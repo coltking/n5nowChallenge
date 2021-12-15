@@ -1,4 +1,5 @@
-import { createTheme } from "@material-ui/core"
+import { createTheme } from '@material-ui/core/styles';
+
 
 
 const N5Palette = {
@@ -26,7 +27,7 @@ const N5Theme = () => theme(N5Palette)
 export default N5Theme
 
 const theme = (palette) => {
-    return createTheme({
+    return {
         palette: {
             primary: {
                 light: palette.primary.light,
@@ -310,5 +311,5 @@ const theme = (palette) => {
                 },
             },
         },
-    })
+    }
 }
