@@ -6,14 +6,8 @@ import configureStore from '../store/configureAppStore';
 
 const store = configureStore();
 
-const withProvider = WrappedComponent => {
-  return props => {
-    return (
-      <Provider store={store}>
-        <WrappedComponent {...props} />
-      </Provider>
-    )
-  };
-};
+export const withProvider = (story) => (<Provider store={store}>
+  {story}
+</Provider>)
 
 export default withProvider;

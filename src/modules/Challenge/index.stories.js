@@ -1,22 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 import { Grid, Typography, Divider } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 
-storiesOf('Challenge', module)
+
+import withProvider from '../withProvider.js'
+
+storiesOf('Challenge', module).addDecorator((storyFn) => withProvider(storyFn))
     .add('Component', () => {
-        return (
-            <Grid container spacing={4}>
-                <Grid item xs={12}>
-                    <Typography variant="h3">Jr. Front End Challenge</Typography>
-                    <Divider />
-                </Grid>
-                <Grid item>
+        const top10 = useSelector(state => state.topTen.values)
+        useEffect(() => {
+            console.log(top10);
+        }, [top10])
+        return <Grid container spacing={4}>
+            <Grid item xs={12}>
+                <Typography variant="h3">Jr. Front End Challenge</Typography>
+                <Divider />
+            </Grid>
+            <Grid item>
+                <Grid container xs={12}>
                     {
-                        //El componente propuesto arriba se compone de 2 secciones: ***Categorias*** y ***Top10.***
-                        //Se le proveera al candidato la documentacion de la API a la que debe apuntar para obtener esta informacion.
-                        //Para este caso se invocara a un endpoint por cada una de las secciones.
+                        top10.map(item => (
+                            <Grid item xs={12} key={item.id}>
+                                <Typography variant="h5">{item.title}</Typography>
+                                <Typography variant="body1">{item.groupDescription}</Typography>
+                                <Typography variant="body1">{item.id}</Typography>
+                            </Grid>
+                        ))
                     }
                 </Grid>
             </Grid>
-        )
+        </Grid>
     })

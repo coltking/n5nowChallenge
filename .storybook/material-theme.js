@@ -1,31 +1,32 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from "@material-ui/core"
+
 
 const N5Palette = {
     primary: {
-      main: '#0170d4',
-      light: "#5e9eff",
-      dark: "#0046a2",
-      contrastText: '#fff'
+        main: '#0170d4',
+        light: "#5e9eff",
+        dark: "#0046a2",
+        contrastText: '#fff'
     },
     secondary: {
-      main: '#33517a',
-      light: "#627da9",
-      dark: "#00294e",
-      contrastText: '#fff'
+        main: '#33517a',
+        light: "#627da9",
+        dark: "#00294e",
+        contrastText: '#fff'
     },
     text: {
-      primary: '#3E3E3E',
-      secondary: '#666666',
-      disabled: '#9E9E9E',
+        primary: '#3E3E3E',
+        secondary: '#666666',
+        disabled: '#9E9E9E',
     },
     defaultFont: 'Muli, sans-serif',
 }
 
-const N5Theme = () => createTheme(N5Palette)
+const N5Theme = () => theme(N5Palette)
 export default N5Theme
 
-const createTheme = (palette) =>
-    createMuiTheme({
+const theme = (palette) => {
+    return createTheme({
         palette: {
             primary: {
                 light: palette.primary.light,
@@ -58,11 +59,11 @@ const createTheme = (palette) =>
             },
             success: {
                 main: "#46ce7f",
-                light: "#d5f4e2",                
+                light: "#d5f4e2",
                 dark: '#009c52',
                 contrastText: '#3e3e3e',
             },
-            warning: { 
+            warning: {
                 main: '#ffbb00',
                 light: '#fff0c7',
                 dark: '#c78b00',
@@ -226,7 +227,7 @@ const createTheme = (palette) =>
             MuiButton: {
                 root: {
                     borderRadius: 18,
-                    border: 0,                    
+                    border: 0,
                     textTransform: 'none',
                     height: '36px',
                     minWidth: '152px',
@@ -310,3 +311,4 @@ const createTheme = (palette) =>
             },
         },
     })
+}
