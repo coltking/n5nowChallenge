@@ -1,7 +1,3 @@
-import { createTheme } from '@material-ui/core/styles';
-
-
-
 const N5Palette = {
     primary: {
         main: '#0170d4',

@@ -19,14 +19,22 @@ storiesOf('Challenge', module).addDecorator((storyFn) => withProvider(storyFn))
             </Grid>
             <Grid item>
                 <Grid container xs={12}>
+
+                </Grid>
+                <Grid container xs={12}>
                     {
-                        top10.map(item => (
-                            <Grid item xs={12} key={item.id}>
-                                <Typography variant="h5">{item.title}</Typography>
-                                <Typography variant="body1">{item.groupDescription}</Typography>
-                                <Typography variant="body1">{item.id}</Typography>
-                            </Grid>
-                        ))
+                        top10.map(item => (<>
+                            <ListItem>
+                                <Grid item xs={2} justifyContent='center' align='center' container>
+                                    <Avatar>{item.customerName[0]}</Avatar>
+                                </Grid>
+                                <Grid>
+                                    <Typography variant='h5' align='left'>{item.customerName + " " + item.customerLastName}</Typography>
+                                    <Typography align='left' variant='subtitle2'>{item.title + ": " + item.groupDescription}</Typography>
+                                </Grid>
+                            </ListItem>
+                            <Divider />
+                        </>))
                     }
                 </Grid>
             </Grid>

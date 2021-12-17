@@ -5,6 +5,8 @@ import { createTheme, MuiThemeProvider } from '@material-ui/core'
 const theme = createTheme(Theme())
 
 
-const ThemeDecorator = storyFn => { return <MuiThemeProvider theme={theme}>{storyFn()}</MuiThemeProvider> }
+const ThemeDecorator = (StoryFn) => {
+    return <ThemeProvider theme={theme}>{StoryFn()}</ThemeProvider>
+}
 
 export default ThemeDecorator
