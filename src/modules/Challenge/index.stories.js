@@ -1,25 +1,42 @@
 import React, { useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 import { Grid, Typography, Divider } from '@material-ui/core'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 import withProvider from '../withProvider.js'
+import { getTopTen } from '../../store/actions/topTen.js'
+import { getCategories } from '../../store/actions/categories.js'
 
 storiesOf('Challenge', module).addDecorator((storyFn) => withProvider(storyFn))
     .add('Component', () => {
         const top10 = useSelector(state => state.topTen.values)
+        const categories = useSelector(state => state.categories.values)
+        const dispatch = useDispatch()
         useEffect(() => {
-            console.log(top10);
-        }, [top10])
+            dispatch(getTopTen())
+            dispatch(getCategories())
+        }, [])
+        console.log(top10);
         return <Grid container spacing={4}>
             <Grid item xs={12}>
                 <Typography variant="h3">Jr. Front End Challenge</Typography>
                 <Divider />
             </Grid>
             <Grid item>
-                <Grid container xs={12}>
-
+                <Grid container alignItems='center' spacing={3}>
+                    {
+                        categories.map(category => (
+                            <Grid item xs={4} direction='row' container spacing={1}>
+                                <Grid item xs={1} justifyContent='center' align='center' container>
+                                    <div className='ctasCount' style={{ backgroundColor: category.color }}>{category.ctasCount}</div>
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <Typography variant='subtitle1' >{category.name}</Typography>
+                                </Grid>
+                            </Grid>
+                        ))
+                    }
                 </Grid>
                 <Grid container xs={12}>
                     {
@@ -33,7 +50,7 @@ storiesOf('Challenge', module).addDecorator((storyFn) => withProvider(storyFn))
                                     <Typography align='left' variant='subtitle2'>{item.title + ": " + item.groupDescription}</Typography>
                                 </Grid>
                             </ListItem>
-                            <Divider />
+                            <Divider variant="middle" />
                         </>))
                     }
                 </Grid>
